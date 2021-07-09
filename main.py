@@ -6,7 +6,7 @@ domain = input("Enter a domain to scan: ")
 req = requests.get('http://{}/sitemap.xml'.format(domain))
 xml = req.text
 # https://stackoverflow.com/questions/31276001/parse-xml-sitemap-with-python#31276152
-soup = BeautifulSoup(xml)
+soup = BeautifulSoup(xml,'lxml')
 sitemapTags = soup.find_all("sitemap")
 xmlDict = {}
 for sitemap in sitemapTags:
