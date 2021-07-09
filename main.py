@@ -5,6 +5,7 @@ badsha256s = requests.get('https://raw.githubusercontent.com/iam-py-test/my_filt
 domain = input("Enter a domain to scan: ")
 req = requests.get('http://{}/sitemap.xml'.format(domain))
 xml = req.text
+print(xml)
 # https://stackoverflow.com/questions/31276001/parse-xml-sitemap-with-python#31276152
 soup = BeautifulSoup(xml,'lxml')
 sitemapTags = soup.find_all("sitemap")
