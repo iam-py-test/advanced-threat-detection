@@ -8,7 +8,7 @@ xml = req.text
 print(xml)
 # https://stackoverflow.com/questions/31276001/parse-xml-sitemap-with-python#31276152
 soup = BeautifulSoup(xml,'lxml')
-sitemapTags = soup.find_all("sitemap")
+sitemapTags = soup.find_all("url")
 xmlDict = {}
 for sitemap in sitemapTags:
     xmlDict[sitemap.findNext("loc").text] = sitemap.findNext("lastmod").text
