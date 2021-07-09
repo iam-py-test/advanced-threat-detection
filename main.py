@@ -5,7 +5,7 @@ badsha256s = requests.get('https://raw.githubusercontent.com/iam-py-test/my_filt
 domain = input("Enter a domain to scan: ")
 req = requests.get('http://{}/sitemap.xml'.format(domain))
 xml = req.text
-print(xml)
+#print(xml)
 # https://stackoverflow.com/questions/31276001/parse-xml-sitemap-with-python#31276152
 soup = BeautifulSoup(xml,'lxml')
 sitemapTags = soup.find_all("url")
@@ -13,3 +13,10 @@ xmlDict = {}
 for sitemap in sitemapTags:
     xmlDict[sitemap.findNext("loc").text] = sitemap.findNext("lastmod").text
 print(xmlDict)
+for url in xmlDict:
+    req2 = requests.get(url)
+    if sha256(req2.content).hexdigest() in badsha256s:
+        print("Malware detected on url {}".format(url))
+    else:
+        print("Url {} clean".format(url))
+ 
