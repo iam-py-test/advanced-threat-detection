@@ -1,11 +1,11 @@
 import os
-from hashlib import sha256
+import hashlib
 snap1 = {}
 snap2 = {}
 for root, dirs, files in os.walk("/"):
   for file in files:
     try:
-      snap1[os.path.join(root,file)] = sha256(open(os.path.join(root,file),"r").encode()).hexdigest()
+      snap1[os.path.join(root,file)] = hashlib.sha256(open(os.path.join(root,file),"r").encode()).hexdigest()
     except:
       pass
 print(snap1)
@@ -19,8 +19,8 @@ for root, dirs, files in os.walk("/"):
     except:
       print("File created: {}".format(filename))
     else:
-      if sha256(open(filename,"r").encode()).hexdigest() == oldsha:
+      if hashlib.sha256(open(filename,"r").encode()).hexdigest() == oldsha:
         continue
       else:
-        print("File {} changed: {} --> {}".format(filename,oldsha,sha256(open(filename,"rb")).hexdigest()))
+        print("File {} changed: {} --> {}".format(filename,oldsha,hashlib.sha256(open(filename,"rb")).hexdigest()))
     
