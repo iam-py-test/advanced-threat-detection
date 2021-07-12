@@ -5,8 +5,7 @@ snap2 = {}
 for root, files, dirs in os.walk("/"):
   for file in files:
     snap1[os.path.join(root,file)] = sha256(open(os.path.join(root,file),"rb")).hexdigest()
-
- print(snap1)
+print(snap1)
 
 cont = input("Press enter to continue: ")
 for root, files, dirs in os.walk("/"):
