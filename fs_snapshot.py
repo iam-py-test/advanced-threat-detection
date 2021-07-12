@@ -24,6 +24,7 @@ cont = input("Press enter to continue: ")
 for root, dirs, files in os.walk(dirtowalk):
   for file in files:
     filename = os.path.join(root,file)
+    snap2[filename] = hashlib.sha256(open(filename,"rb").read()).hexdigest()
     try:
       oldsha = snap1[filename]
     except:
@@ -34,3 +35,9 @@ for root, dirs, files in os.walk(dirtowalk):
       else:
         print("File {} changed: {} --> {}".format(filename,oldsha,hashlib.sha256(open(filename,"rb").read()).hexdigest()))
     
+for file in snap1:
+  try:
+    newf = snap2[file] 
+  except:
+    print("{} has been deleted or renamed".format(file))
+  
