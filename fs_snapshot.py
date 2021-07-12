@@ -39,5 +39,5 @@ for file in snap1:
   try:
     newf = snap2[file] 
   except:
-    print("{} has been deleted or renamed".format(file))
+    print("File {} has been deleted or renamed".format(file))
   
