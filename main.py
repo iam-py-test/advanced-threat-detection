@@ -2,6 +2,7 @@ import requests
 from hashlib import sha256
 from bs4 import BeautifulSoup
 badsha256s = requests.get('https://raw.githubusercontent.com/iam-py-test/my_filters_001/main/malware_sig.txt').text.split("\n")
+badresponse = requests.get('https://raw.githubusercontent.com/iam-py-test/advanced-threat-detection/main/mal-site.txt').text.split("\n")
 domain = input("Enter a domain to scan: ")
 req = requests.get('http://{}/sitemap.xml'.format(domain))
 xml = req.text
@@ -15,7 +16,7 @@ for sitemap in sitemapTags:
 print(xmlDict)
 for url in xmlDict:
     req2 = requests.get(url)
-    if sha256(req2.content).hexdigest() in badsha256s:
+    if sha256(req2.content).hexdigest() in badsha256s or sha256(req2.content).hexdigest() in badresponse:
         print("Malware detected on url {}".format(url))
     else:
         print("Url {} clean".format(url))
