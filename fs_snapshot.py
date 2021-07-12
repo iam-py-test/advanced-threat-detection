@@ -6,8 +6,8 @@ for root, dirs, files in os.walk("/"):
   for file in files:
     try:
       snap1[os.path.join(root,file)] = hashlib.sha256(open(os.path.join(root,file),"r").encode()).hexdigest()
-    except:
-      pass
+    except Exception as err:
+      print(err)
 print(snap1)
 
 cont = input("Press enter to continue: ")
