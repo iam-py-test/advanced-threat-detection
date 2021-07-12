@@ -18,7 +18,7 @@ for root, dirs, files in os.walk(dirtowalk):
       snap1[os.path.join(root,file)] = hashlib.sha256(open(os.path.join(root,file),"rb").read()).hexdigest()
     except Exception as err:
       pass
-print(snap1)
+#print(snap1)
 
 cont = input("Press enter to continue: ")
 for root, dirs, files in os.walk(dirtowalk):
