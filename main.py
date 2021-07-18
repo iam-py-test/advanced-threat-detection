@@ -17,6 +17,17 @@ for sitemap in sitemapTags:
     except:
         pass
 print(xmlDict)
+if xmlDict == {}:
+    print("No sitemap. Using homepage links...")
+    try:
+        xmlDict = {}
+        reqM = requests.get('http://{}'.format(domain))
+        links = BeautifulSoup(xml,'html.parser').find_all("a")
+        for link in links:
+            xmlDict[link.get("href")] = 'mal'
+    except:
+        pass
+
 for url in xmlDict:
     req2 = requests.get(url)
     if sha256(req2.content).hexdigest() in badsha256s or sha256(req2.content).hexdigest() in badresponse:
