@@ -12,7 +12,10 @@ soup = BeautifulSoup(xml,'lxml')
 sitemapTags = soup.find_all("url")
 xmlDict = {}
 for sitemap in sitemapTags:
-    xmlDict[sitemap.findNext("loc").text] = sitemap.findNext("lastmod").text
+    try:
+        xmlDict[sitemap.findNext("loc").text] = sitemap.findNext("lastmod").text
+    except:
+        pass
 print(xmlDict)
 for url in xmlDict:
     req2 = requests.get(url)
