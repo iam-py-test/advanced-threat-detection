@@ -20,5 +20,8 @@ for domain in domains:
     print("{} not blocked. {} domains tested. Proactive detection at {}%".format(domain,testeddomains,(detectionrate/len(domains))*100))
 
 pdr = (detectionrate/len(domains))*100
-print("Test complete. {} domains tested. Final detection at {}".format(len(domains),pdr))
+print("\n\n")
+for domain in misseddomains:
+  print("Domain missed: {}".format(domain))
+print("Test complete. {} domains tested. {} missed domains. Final detection at {}".format(len(domains),len(misseddomains),pdr))
 o = input("Test done. Exit?")
