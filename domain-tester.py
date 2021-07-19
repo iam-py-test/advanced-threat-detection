@@ -12,9 +12,10 @@ for domain in domains:
   testeddomains += 1
   try:
     requests.get(domain)
-  except:
+  except Exception as err:
     detectionrate += 1
     print("{} blocked. {} domains tested. Proactive detection at {}%".format(domain,testeddomains,(detectionrate/len(domains))*100))
   else:
     misseddomains.append(domain)
     print("{} not blocked. {} domains tested. Proactive detection at {}%".format(domain,testeddomains,(detectionrate/len(domains))*100))
+print("Test complete. {} domains tested. Final detection at {}".format(len(domains)),(detectionrate/len(domains))*100))
