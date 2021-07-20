@@ -1,6 +1,16 @@
-import requests
-from hashlib import sha256
-from bs4 import BeautifulSoup
+try:
+    import requests
+    from hashlib import sha256
+    from bs4 import BeautifulSoup
+except:
+    import subprocess
+    subprocess.run("pip3 install bs4",shell=True)
+    subprocess.run("pip3 install requests",shell=True)
+    subprocess.run("pip3 install hashlib",shell=True)
+    subprocess.run("pip3 install lxml",shell=True)
+    import requests
+    from hashlib import sha256
+    from bs4 import BeautifulSoup
 badsha256s = requests.get('https://raw.githubusercontent.com/iam-py-test/my_filters_001/main/malware_sig.txt').text.split("\n")
 badresponse = requests.get('https://raw.githubusercontent.com/iam-py-test/advanced-threat-detection/main/mal-site.txt').text.split("\n")
 domain = input("Enter a domain to scan: ")
