@@ -1,4 +1,8 @@
-import requests
+try:
+  import requests
+except:
+  import subprocess
+  subprocess.run("pip3 install requests",shell=True)
 domains = requests.get("https://curben.gitlab.io/malware-filter/urlhaus-filter-domains-online.txt").text.split("\n")
 detectionrate = 0
 misseddomains = []
