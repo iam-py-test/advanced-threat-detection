@@ -15,7 +15,7 @@ for domain in domains:
     continue
   testeddomains += 1
   try:
-    requests.get(domain)
+    requests.get("http://{}".format(domain))
   except Exception as err:
     detectionrate += 1
     print("{} blocked. {} domains tested. Proactive detection at {}%".format(domain,testeddomains,(detectionrate/len(domains))*100))
