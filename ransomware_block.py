@@ -1,6 +1,12 @@
 import os
 backup = {}
 timesrestored = 0
+def isencrypted(filename):
+	ransomexts = ["encrypted"]
+	for ext in ransomexts:
+		if filename.endswith("." + ext):
+			return True
+	return False
 
 dirtoprotect = input("Enter the dir to protect")
 for root,dirs,files in os.walk(dirtoprotect):
@@ -11,7 +17,7 @@ for root,dirs,files in os.walk(dirtoprotect):
 while True:
 	for root,dirs,files in os.walk(dirtoprotect):
 		for file in files:
-			if ".encrypted" in file:
+			if isencrypted(file):
 				timesrestored += 1
 				print("Ransomware detected. Restoring files...")
 				for restorefile in backup:
