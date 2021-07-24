@@ -1,20 +1,15 @@
 import os
 backup = {}
 timesrestored = 0
-def arg(p=1):
-	try:
-		import sys
-		return sys.argv(p)
-	except:
-		return None
 
-for root,dirs,files in os.walk(arg(2)):
+dirtoprotect = input("Enter the dir to protect")
+for root,dirs,files in os.walk(dirtoprotect):
 		for file in files:
 			print("Backing up {}".format(file))
 			backup[os.path.join(root,file)] = open(os.path.join(root,file),"rb").read()
 
 while True:
-	for root,dirs,files in os.walk(arg(2)):
+	for root,dirs,files in os.walk(dirtoprotect):
 		for file in files:
 			if ".encrypted" in file:
 				timesrestored += 1
