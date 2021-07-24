@@ -8,9 +8,12 @@ def isencrypted(filename):
 			return True
 	return False
 
-dirtoprotect = input("Enter the dir to protect")
+dirtoprotect = input("Enter the dir to protect: ")
 for root,dirs,files in os.walk(dirtoprotect):
 		for file in files:
+			if isencrypted(file):
+				print("File {} already encrypted. Not backing up...".format(file))
+				continue
 			print("Backing up {}".format(file))
 			backup[os.path.join(root,file)] = open(os.path.join(root,file),"rb").read()
 
