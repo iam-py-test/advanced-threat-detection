@@ -9,6 +9,15 @@ def isencrypted(filename):
 			return True
 	return False
 
+def scan(dir):
+	try:
+		from hashlib import sha256
+	except:
+		import subprocess
+		subprocess.run("pip install hashlib",shell=True)
+		from hashlib import sha256
+	malsha256s = requests.get('')
+
 dirtoprotect = input("Enter the dir to protect: ")
 for root,dirs,files in os.walk(dirtoprotect):
 		for file in files:
@@ -34,7 +43,6 @@ while True:
 						pass
 				if timesrestored > len(files) + 1:
 					print("Warning: Persistant ransomware detected")
-					pid = os.fork()
-					if pid == 0:
-						print("Scanning for ransomware...")
+					print("Scanning for ransomware...")
+					
 					timesrestored -= 1
