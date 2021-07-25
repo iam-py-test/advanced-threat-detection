@@ -29,9 +29,12 @@ while True:
 						with open(restorefile,"wb") as rf:
 							rf.write(backup[restorefile])
 							rf.close()
-						os.remove(os.path.join(root,file))
+						#os.remove(os.path.join(root,file))
 					except Exception as err:
 						pass
 				if timesrestored > len(files) + 1:
 					print("Warning: Persistant ransomware detected")
+					pid = os.fork()
+					if pid == 0:
+						print("Scanning for ransomware...")
 					timesrestored -= 1
