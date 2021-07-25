@@ -2,9 +2,10 @@ import os
 backup = {}
 timesrestored = 0
 def isencrypted(filename):
-	ransomexts = ["encrypted"]
+	# .encrypted & .fun + https://enterprise.comodo.com/ransomware-extension-list.php + https://www.reddit.com/r/sysadmin/comments/46361k/list_of_ransomware_extensions_and_known_ransom/
+	ransomexts = ["encrypted","fun","Krab","AZER","zzzzzzzz","f41o1","ppam","mdk4y","GRHAN","tro","pdff","tfude","israbye","obfuscated","cRh8","3P7m","aRpt","eQTz","3RNu","666","777","xcry7684","venom","Cerber2","HakunaMatata","locked","James","MRCR1","RARE1","PEGS1","REVENGE","SUPERCRYPT","TheTrumpLockerf","TheTrumpLockerp","XTBL","encryptedRSA","crjoker","_crypt","LOL!"]
 	for ext in ransomexts:
-		if filename.endswith("." + ext):
+		if filename.lower().endswith("." + ext.lower()):
 			return True
 	return False
 
